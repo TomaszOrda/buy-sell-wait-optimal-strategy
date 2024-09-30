@@ -1,7 +1,7 @@
 from itertools import combinations
 from math import prod
 
-def strategy(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CURR2"):
+def strategy(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CURR2", opening_currency = None, closing_currency = None):
   currency_other = {
     currency_1:currency_2,
     currency_2:currency_1
@@ -75,5 +75,12 @@ def strategy(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CURR2"):
 
 
 
+  optimal_strategy = dnc_buy_sell_wait(rates)
+
+  if closing_currency:
+    for curr in currencies:
+      optimal_strategy[curr] = optimal_strategy[curr][closing_currency]
+  if opening_currency:
+    optimal_strategy = optimal_strategy[opening_currency]
   
-  return dnc_buy_sell_wait(rates)
+  return optimal_strategy
