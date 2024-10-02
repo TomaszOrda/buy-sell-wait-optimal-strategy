@@ -10,7 +10,29 @@ It is tempting to use any machine learning approach here. After all, we have a h
 
 # Functionality
 
+## Brute force
 
+Have I just said there are simpler algorithms with proof of optimality? Well, it is true brute force is extremely rudimentary and will indeed give us optimal answer. Naturally the time complexity would be abysmal. The only reason brute force appears here, is because we will need it in a moment.
+
+Idea is simple. As seen in the code, we are iterating over all possible subsets of points. Each subset represents buy/sell strategies. Which of them are buy, and which are sell is just up to the currency we are starting with.
+
+## Divide and Conquer
+
+The algorithm used is simple Divide and Conquer. It works as follows:
+
+1. If the problem is small, solve it naively (Brute force);
+2. Otherwise divide the problem in half, and solve the halves recursively;
+3. Knowing all the optimal strategies for each halve we are trying to combine them and picking the best one.
+
+That itself is enough. There is just one subtlety. Our DnC algorithm always returns 4 different strategies. Each with different opening or closing currencies. Why is it so, will be easily visible in the proof.
+
+### Sketch of a proof of correctness
+
+### Time complexity
+
+## Scanning
+
+### Why choose DnC over scanning?
 
 TODO:
   - README
