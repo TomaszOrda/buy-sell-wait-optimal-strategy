@@ -50,7 +50,7 @@ Now using the master theorem of divide-and-conquer algorithms we get:
 
 $$T(n) \in O(n) \text{.}$$
 
-Or we could argue that we need to run the function on each of the $n$ input variables. Those were run by $\frac{n}{2}$ function calls as each calls for exactly two new functions. Then those were called by $\frac{n}{4}$ functions etc. We get $n + \frac{n}{2} + \frac{n}{4} + \frac{n}{8} + \ldots + 2 + 1 = 2n$ function calls, each running in constant time. One can imagine that as a binary tree of function calls. Of course here we omit the optimization of using brute force for any $n<4$, however that has no impact on the asymptotic time complexity.
+Or we could argue that we need to run the function on each of the $n$ input variables. Those were run by $\frac{n}{2}$ function calls as each calls for exactly two new functions. Then those were called by $\frac{n}{4}$ functions etc. We get $n + \frac{n}{2} + \frac{n}{4} + \frac{n}{8} + \ldots + 2 + 1 = 2n - 1$ function calls, each running in constant time. One can imagine that as a binary tree of function calls. Of course here we omit the optimization of using brute force for any $n<4$, however that has no impact on the asymptotic time complexity.
 
 ## Scanning
 
