@@ -54,6 +54,15 @@ Or we could argue that we need to run the function on each of the $n$ input vari
 
 ## Scanning
 
+There should be a faster algorithm. Let us assume now that we have a partial optimal strategy — that up until a certain day we have made all the perfect decisions. How would we expand that strategy by one more day? 
+
+Assume that We start with dollar and end with dollar. So any partial strategy will buy, then sell, then buy, sell, finally ending on sell. Starting from the day of last sell, for each following day we are going to:
+ 1. check if it is a good place to buy — we will remember the lowest price since the last sell
+ 2. check if we can delay our last sell to that day — that is if the price i higher than the last sell
+ 3. or check if we make a profit if we buy on the day from the 1. and then sell on this day
+
+This requires proof. However I have not yet implemented this approach. So depending on the result there will be either proof or critique of the above.
+
 ### Why choose DnC over scanning?
 
 TODO:
