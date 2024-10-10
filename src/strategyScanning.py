@@ -22,10 +22,11 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
     if not potentialBuyingDay or rates[day]<lastBuyingDay: # new possible buying day
       potentialBuyingDay = day
       
-    potentialBuySell = buySellIncome(day, potentialSellingDay) #None if unavail
+    potentialBuySell = buySellIncome(rates[day], rates[potentialBuyingDay]) #None if unavail
     if potentialBuySell>max(rates[day] - optimalStrategy[-1], 0): # we can have new buysell pair that is better than postponing buying and positive
-      #addBuySell to strategy
+      strategy + [potentialBuyingDay, day]
       elif rates[day] - optimalStrategy[-1] > 0: # we can postpone buying
+         optimalStrategy[-1] = day
         #new buying day
       break;
     #1. better selling point?  
