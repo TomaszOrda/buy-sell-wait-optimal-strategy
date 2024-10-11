@@ -9,14 +9,17 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
   currencies = [currency_1, currency_2]
   optimalStrategy = []
   # lastMove = 'buy' if opening_currency == currency_2 else 'sell'
+  potentialBuyingDay = None
+  potentialBuySell = None
+  
+  if opening_currency == currency_2 and closing_currency = currency_1:
+    rates = 1/rates
 
   def buySellIncome(buyRate, sellRate):
     if not sellRate or not buyRate:
       return None
     return 1/buyRate * sellRate * (1-margin) * (1-margin)
     
-  potentialBuyingDay = None
-  potentialBuySell = None
   
   for day in range(len(rates)):
     if not potentialBuyingDay or rates[day]<lastBuyingDay: # new possible buying day
