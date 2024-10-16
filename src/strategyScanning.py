@@ -1,6 +1,3 @@
-from itertools import combinations
-from math import prod
-
 def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CURR2", opening_currency = None, closing_currency = None):
   if not opening_currency: opening_currency = currency_1
   if not closing_currency: closing_currency = currency_2
@@ -23,7 +20,7 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
       
     potentialBuySell = buySellIncome(rates[day], rates[potentialBuyingDay])
     if potentialBuySell>max(rates[day] - optimalStrategy[-1], 0): # we can have new buysell pair that is better than postponing buying and positive
-      optimalStrategy + [potentialBuyingDay, day]
+      optimalStrategy +[potentialBuyingDay, day]
     elif rates[day] - optimalStrategy[-1] > 0: # we can postpone selling
        optimalStrategy[-1] = day
 
