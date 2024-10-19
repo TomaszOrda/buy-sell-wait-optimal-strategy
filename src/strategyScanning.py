@@ -27,8 +27,12 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
   if opening_currency != closing_currency: #we will need additional buy or one less sell
     betterBuyingDay = #argmax optimalStrategy[-2], potentialBuyingDay
     if buySellIncome(rates[optimalStrategy[-2], rates[optimalStrategy[-1]) * 1/rates[potentialBuyingDay] * (1-margin) > 1/rates[betterBuyingDay] * (1-margin): #check if we get more from additional potential buying or from dropping last selling day (for the favor of potential or last buying day?)
+      optimalStrategy.append([potentialBuyingDay])
       #add potential buying day to strategy
     else:
+      optimalStrategy.remove(-1)
+      optimalStrategy.remove(-1)
+      optimalStrategy.append([betterBuyingDay])
       #remove last buy and sell, add better buying day 
 
   return optimalStrategy
