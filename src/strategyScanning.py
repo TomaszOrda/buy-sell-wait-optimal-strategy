@@ -30,8 +30,7 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
       optimalStrategy.append([potentialBuyingDay])
       #add potential buying day to strategy
     else:
-      optimalStrategy.remove(-1)
-      optimalStrategy.remove(-1)
+      del optimalStrategy[-2:]
       optimalStrategy.append([betterBuyingDay])
       #remove last buy and sell, add better buying day 
 
