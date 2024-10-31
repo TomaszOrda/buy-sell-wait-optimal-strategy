@@ -21,11 +21,11 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
     potentialBuySellIncome = buySellIncome(rates[day], rates[potentialBuyingDay])
     
     if len(optimalStrategy) == 0:
-      if potentialBuySellIncome > 0:
+      if potentialBuySellIncome > 1:
         optimalStrategy.extend([potentialBuyingDay, day])
       continue
     
-    if potentialBuySellIncome>max(rates[day] - rates[optimalStrategy[-1]], 0): # we can have new buysell pair that is better than postponing buying and positive
+    if potentialBuySellIncome>max(rates[day] - rates[optimalStrategy[-1]], 1): # we can have new buysell pair that is better than postponing buying and positive
       optimalStrategy.extend([potentialBuyingDay, day])
     elif rates[day] - rates(optimalStrategy[-1]) > 0: # we can postpone selling
        optimalStrategy[-1] = day
