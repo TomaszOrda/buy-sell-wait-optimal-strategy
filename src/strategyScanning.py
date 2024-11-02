@@ -8,7 +8,7 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
   potentialBuySellIncome = None
   
   if opening_currency == currency_2:# and closing_currency == currency_1:
-    rates = 1/rates
+    rates = list(map(lambda x: 1/x, rates))
 
   def buySellIncome(buyRate, sellRate):
     return 1/buyRate * sellRate * (1-margin) * (1-margin)
