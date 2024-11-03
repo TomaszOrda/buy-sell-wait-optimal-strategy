@@ -18,7 +18,7 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
     if rates[day]<rates[potentialBuyingDay]: # new possible buying day
       potentialBuyingDay = day
     
-    potentialBuySellIncome = buySellIncome(rates[day], rates[potentialBuyingDay])
+    potentialBuySellIncome = buySellIncome(rates[potentialBuyingDay], rates[day])
     
     if len(optimalStrategy) == 0:
       if potentialBuySellIncome > 1:
