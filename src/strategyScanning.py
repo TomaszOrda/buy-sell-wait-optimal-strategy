@@ -5,7 +5,6 @@ def strategyScanning(rates, margin=0.05, currency_1 = "CURR1", currency_2 = "CUR
   optimalStrategy = []
   
   potentialBuyingDay = 0
-  potentialBuySellIncome = None
   
   if opening_currency == currency_2:# and closing_currency == currency_1:
     rates = list(map(lambda x: 1/x, rates))
