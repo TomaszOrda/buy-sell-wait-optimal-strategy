@@ -61,14 +61,14 @@ Assume that We start with dollar and end with dollar. So any partial strategy wi
  2. check if we can delay our last sell to that day — that is if the price i higher than the last sell
  3. or check if we make a profit if we buy on the day from the 1. and then sell on this day
 
-This requires proof. However I have not yet implemented this approach. So depending on the result there will be either proof or critique of the above.
+On top of that, if the opening and closing currency does not match, we need to adjust our final strategy slightly. Here at the end we are either removing the last buy-sell pair and adding the highest buy we can (it will be the buy from buy-sell pair or the next potential buying day), or we just append a buy from after the last pair.
+
+When the currencies are reversed from what the algorithm thinks they are, it is sufficient to reverse every rate and run the algorithm as is.
+
+### Proof of correctness and time complexity
+
+
 
 ### Why choose DnC over scanning?
 
-TODO:
-  - README
-    - Introduction
-    - Functionality
-    - Time complexity analysis
-  - Code
-    - Tests and examples
+It seems that scanning would be the simpler algorithm of the two. Reality is a presented. Special cases
