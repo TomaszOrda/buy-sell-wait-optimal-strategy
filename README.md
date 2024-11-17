@@ -67,6 +67,25 @@ When the currencies are reversed from what the algorithm thinks they are, it is 
 
 ### Proof of correctness and time complexity
 
+Time complexity is naturally O(n), as any natural scanning algorithm.
+
+Proof of correctness is... tedious. But doable? I suppose?
+
+Let us notice that in optimal solution any buy has the lowest rate among its neighbours up until the two sells that envalop it. Same with sell days — they are the highest among their neighbours. If it was not true, then we could shift the buy (sell) towards that value and get a better solution.
+
+Now assume that our algorithm found the previous buy-sell pairs just fine. We have a few cases to consider:
+
+ - It would not find a new buy-sell pair before the next optimal-buy, because that pair could get introduced to the optimal solution making it better.
+ - We cant find an earlier buy and sell that is after that buy, beause the optimal-buy is smaller than any buy we could choose, our algorithm would choose it as its buy.
+ - Our algorithm cannot choose a buy that is after the optimal-sell, because the optimal pair would trigger it to remember that buy and search for another pair or a better sell.
+Let us stop for a brief moment and notice that our algorithm already finds optimal buy days.
+ - If our algorithm choose an earlier sell, then it would naturally keep on updating the sell up untill the optimal one. That is unless it finds another pair before it considers the optimal sell.
+   - If it touches the optimal sell, it will choose better option between updating sell and creating a new pair. And updating sell is optimal, as we assumed.
+   - If it finds a buy-sell pair before it touches the optimal-sell, then we already found a non-zero profit pair that is better than postponing sell. That pair with sell updated to the optimal-sell would generate a better income than the one optimal buy-sell pair, which creates a contradiction. (Lemma required.)
+ - And naturally we cannot update optimal-sell to anything better because we could optimize the optimal solution, which we can not do.
+
+This proof is... less than pretty. It likely has some holes, but the general idea holds. 
+
 
 
 ### Why choose DnC over scanning?
