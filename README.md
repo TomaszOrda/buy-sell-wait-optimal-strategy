@@ -84,10 +84,12 @@ Let us stop for a brief moment and notice that our algorithm already finds optim
    - If it finds a buy-sell pair before it touches the optimal-sell, then we already found a non-zero profit pair that is better than postponing sell. That pair with sell updated to the optimal-sell would generate a better income than the one optimal buy-sell pair, which creates a contradiction. (Lemma required.)
  - And naturally we cannot update optimal-sell to anything better because we could optimize the optimal solution, which we can not do.
 
-This proof is... less than pretty. It likely has some holes, but the general idea holds. 
-
-
+This proof is... less than pretty. It likely has some holes, but the general idea holds. If tried to write a full proof, it would likely take a few pages more.
 
 ### Why choose DnC over scanning?
 
-It seems that scanning would be the simpler algorithm of the two. Reality is a presented. Special cases
+It seems that scanning would be the simpler algorithm of the two. It should be enough to walk the list just once. With perfect control over what we consider a good move and what to discard. No recursion or complicated ideas.
+
+Reality is a presented. Plenty special cases. Other opening and closing combinations which we did not even try to discuss. Writing that algorithm took way longer, and there were countless bugs to be dealt with.
+
+Whereas DnC approach is cleverly simple as soon as one understands the idea behind all of the Divide and Conquer algorithms.
