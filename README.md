@@ -88,6 +88,8 @@ This proof is... less than pretty. It likely has some holes, but the general ide
 
 ### Why choose DnC over scanning?
 
+One good thing about scanning is that it is 10 times as fast (tested on Google Colab %%timeit function). That is if we do not take to account that DnC calculates all of the 4 variants of the problem at once. Still, 2.5 times (likely 5 after some obvious optimizations) is a significant improvement. In this case however, the time savings when executing the algorithm might drown in the time expenses required to write working code.
+
 It seems that scanning would be the simpler algorithm of the two. It should be enough to walk the list just once. With perfect control over what we consider a good move and what to discard. No recursion or complicated ideas.
 
 Reality is a presented. Plenty special cases. Other opening and closing combinations which we did not even try to discuss. Writing that algorithm took way longer, and there were countless bugs to be dealt with.
