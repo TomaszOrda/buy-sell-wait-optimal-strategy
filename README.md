@@ -30,11 +30,11 @@ That itself is enough. There is just one subtlety. Our DnC algorithm always retu
 
 Let's say now that we have a problem as above. But we can calculate left and right halfs optimal strategy (strategies). Now without loss of generality, assume that we want to calculate a full strategy opening with dollar, and closing with yen. There are two ways we can do that.
 
-First possibility is that we take the left strategy that is dollar -> dollar; we also take right strategy that is dollar -> yen. Combining them we will attain a proper strategy. And assuming that, during the middle day we have dollar in our pocket, it is an optimal strategy.
+First possibility is that we take the left strategy that is dollar &rarr; dollar; we also take right strategy that is dollar &rarr; yen. Combining them we will attain a proper strategy. And assuming that, during the middle day we have dollar in our pocket, it is an optimal strategy.
 
 To show that we assume that it is not. Which means that there is a **better strategy** that is more optimal than **our strategy**. So the better strategy will diverge from our strategy on at least one decision. This decision has to be in either left or right strategy — assume it is left. If we divide the better strategy we will get halves, where the left part is different from our. Notice that the right strategy gets no benefit from starting with less dollars, so the left part of the better strategy has to be strictly better than the left part of our strategy. But our left strategy was assumed optimal. Thus there can not be a better strategy. That finishes the proof by contradiction.
 
-Second possibility follows the same way, but with left strategy being dollar -> yen, and right being yen -> dollar.
+Second possibility follows the same way, but with left strategy being dollar &rarr; yen, and right being yen &rarr; dollar.
 
 For everything to work every step of the algorithm (apart from the outermost) must calculate all four opening and closing variations. But all of them go, as the above.
 
@@ -67,7 +67,7 @@ When the currencies are reversed from what the algorithm thinks they are, it is 
 
 ### Proof of correctness and time complexity
 
-Time complexity is naturally O(n), as any natural scanning algorithm.
+Time complexity is naturally $O(n)$, as any natural scanning algorithm.
 
 Proof of correctness is... tedious. But doable? I suppose?
 
@@ -88,7 +88,7 @@ This proof is... less than pretty. It likely has some holes, but the general ide
 
 ### Why choose DnC over scanning?
 
-One good thing about scanning is that it is 10 times as fast (tested on Google Colab %%timeit function). That is if we do not take to account that DnC calculates all of the 4 variants of the problem at once. Still, 2.5 times (likely 5 after some obvious optimizations) is a significant improvement. In this case however, the time savings when executing the algorithm might drown in the time expenses required to write working code.
+One good thing about scanning is that it is 10 times as fast (tested on Google Colab `%%timeit` function). That is if we do not take to account that DnC calculates all of the 4 variants of the problem at once. Still, 2.5 times (likely 5 after some obvious optimizations) is a significant improvement. In this case however, the time savings when executing the algorithm might drown in the time expenses required to write working code.
 
 It seems that scanning would be the simpler algorithm of the two. It should be enough to walk the list just once. With perfect control over what we consider a good move and what to discard. No recursion or complicated ideas.
 
