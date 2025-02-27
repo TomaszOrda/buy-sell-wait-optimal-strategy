@@ -1,7 +1,11 @@
 
-def strategy_optimzer_scanning(rates, margin=0.05,
-                               currency_1="CURR1", currency_2="CURR2",
-                               opening_currency=None, closing_currency=None):
+def _buy_sell_income(buy_rate, sell_rate, margin):
+    return 1/buy_rate * sell_rate * (1-margin) * (1-margin)
+
+
+def strategy_optimizer_scanning(rates, margin=0.05,
+                                currency_1="CURR1", currency_2="CURR2",
+                                opening_currency=None, closing_currency=None):
     if not opening_currency:
         opening_currency = currency_1
     if not closing_currency:
@@ -14,16 +18,13 @@ def strategy_optimzer_scanning(rates, margin=0.05,
     if opening_currency == currency_2:
         rates = [1/r for r in rates]
 
-    def buy_sell_income(buy_rate, sell_rate):
-        return 1/buy_rate * sell_rate * (1-margin) * (1-margin)
-
     for day, rate in enumerate(rates):
         if rate < rates[potential_buying_day]:
             # A better buying day found for some future buy-sell pair,
             # as such there is no need for remmebering the previously considered buying day
             potential_buying_day = day
 
-        potential_buy_sell_income = buy_sell_income(rates[potential_buying_day], rate)
+        potential_buy_sell_income = _buy_sell_income(rates[potential_buying_day], rate, margin)
 
         if len(optimal_strategy) == 0:
             if potential_buy_sell_income > 1:
@@ -53,8 +54,9 @@ def strategy_optimzer_scanning(rates, margin=0.05,
         # additional potential buying or
         # from dropping last selling day
         delta_of_adding_a_buy = \
-            buy_sell_income(rates[optimal_strategy[-2]],
-                            rates[optimal_strategy[-1]]) \
+            _buy_sell_income(rates[optimal_strategy[-2]],
+                             rates[optimal_strategy[-1]],
+                             margin) \
             * 1/rates[potential_buying_day] * (1-margin)
 
         delta_of_dropping_last_sell = 1/rates[better_buying_day] * (1-margin)
