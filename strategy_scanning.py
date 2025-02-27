@@ -6,6 +6,12 @@ def _buy_sell_income(buy_rate, sell_rate, margin):
 def strategy_optimizer_scanning(rates, margin=0.05,
                                 currency_1="CURR1", currency_2="CURR2",
                                 opening_currency=None, closing_currency=None):
+
+    if opening_currency not in [currency_1, currency_2, None]:
+        raise ValueError("Unknown currency")
+    if closing_currency not in [currency_1, currency_2, None]:
+        raise ValueError("Unknown currency")
+
     if not opening_currency:
         opening_currency = currency_1
     if not closing_currency:
