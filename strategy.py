@@ -1,4 +1,4 @@
-from strategy_brute import strategy_optimizer_brute
+from strategy_brute import strategy_optimizer_brute_aux
 
 
 def strategy_optimizer(rates, margin=0.05,
@@ -14,7 +14,7 @@ def strategy_optimizer(rates, margin=0.05,
 
     def _dnc_buy_sell_wait(rates):
         if len(rates) <= 4:
-            return strategy_optimizer_brute(rates, margin, currency_1, currency_2)
+            return strategy_optimizer_brute_aux(rates, margin, currency_1, currency_2)
         middle = len(rates)//2
         left = _dnc_buy_sell_wait(rates[:middle])
         right = _dnc_buy_sell_wait(rates[middle:])

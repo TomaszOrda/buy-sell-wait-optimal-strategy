@@ -15,8 +15,8 @@ def _alternate_prod_div(array, indexes):
     return prod(filtered_array[::2])/prod(filtered_array[1::2])
 
 
-def strategy_optimizer_brute(rates, margin=0.05,
-                             currency_1="CURR1", currency_2="CURR2"):
+def strategy_optimizer_brute_aux(rates, margin=0.05,
+                                 currency_1="CURR1", currency_2="CURR2"):
     currency_other = {
         currency_1: currency_2,
         currency_2: currency_1
@@ -49,3 +49,18 @@ def strategy_optimizer_brute(rates, margin=0.05,
             if optimal_strategy[curr1][curr2][1] < strategy_rate:
                 optimal_strategy[curr1][curr2] = (strategy, strategy_rate)
     return optimal_strategy
+
+
+def strategy_optimizer_brute(rates, margin=0.05,
+                             currency_1="CURR1", currency_2="CURR2",
+                             opening_currency=None, closing_currency=None):
+
+    if opening_currency not in [currency_1, currency_2, None]:
+        raise ValueError("Unknown currency")
+    if closing_currency not in [currency_1, currency_2, None]:
+        raise ValueError("Unknown currency")
+
+    opening_currency = opening_currency if opening_currency else currency_1
+    closing_currency = closing_currency if closing_currency else currency_2
+
+    return strategy_optimizer_brute_aux(rates, margin, currency_1, currency_2)[opening_currency][closing_currency][0]
