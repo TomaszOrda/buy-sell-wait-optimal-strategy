@@ -3,11 +3,11 @@ from strategy_brute import strategy_optimizer_brute_aux
 
 def strategy_optimizer(rates, margin=0.05,
                        currency_1="CURR1", currency_2="CURR2",
-                       opening_currency=None, closing_currency=None):
+                       opening_currency="CURR1", closing_currency="CURR2"):
 
-    if opening_currency not in [currency_1, currency_2, None]:
+    if opening_currency not in [currency_1, currency_2]:
         raise ValueError("Unknown currency")
-    if closing_currency not in [currency_1, currency_2, None]:
+    if closing_currency not in [currency_1, currency_2]:
         raise ValueError("Unknown currency")
 
     currencies = [currency_1, currency_2]
@@ -42,10 +42,4 @@ def strategy_optimizer(rates, margin=0.05,
 
     optimal_strategy = _dnc_buy_sell_wait(rates)
 
-    if closing_currency:
-        for curr in currencies:
-            optimal_strategy[curr] = optimal_strategy[curr][closing_currency]
-    if opening_currency:
-        optimal_strategy = optimal_strategy[opening_currency]
-
-    return optimal_strategy
+    return optimal_strategy[opening_currency][closing_currency][0]
