@@ -24,6 +24,7 @@ def strategy_optimizer_scanning(rates, margin=0.05,
             # A better buying day found for some future buy-sell pair,
             # as such there is no need for remmebering the previously considered buying day
             potential_buying_day = day
+            continue
 
         potential_buy_sell_income = _buy_sell_income(rates[potential_buying_day], rate, margin)
 
@@ -33,7 +34,8 @@ def strategy_optimizer_scanning(rates, margin=0.05,
                 potential_buying_day = day
             continue
 
-        if potential_buy_sell_income > max(rate/rates[optimal_strategy[-1]], 1):
+        if potential_buying_day != optimal_strategy[-1] and \
+           potential_buy_sell_income > max(rate/rates[optimal_strategy[-1]], 1):
             # We can have new buysell pair that is better than postponing buying and positive
             optimal_strategy.extend([potential_buying_day, day])
             potential_buying_day = day
