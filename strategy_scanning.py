@@ -7,6 +7,9 @@ def strategy_optimizer_scanning(rates, margin=0.05,
                                 currency_1="CURR1", currency_2="CURR2",
                                 opening_currency="CURR1", closing_currency="CURR2"):
 
+    if currency_1 == currency_2:
+        raise ValueError("Indistinguishable currencies")
+
     if opening_currency not in [currency_1, currency_2]:
         raise ValueError("Unknown currency")
     if closing_currency not in [currency_1, currency_2]:
