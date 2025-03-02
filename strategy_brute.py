@@ -1,5 +1,6 @@
 from itertools import combinations
 from math import prod
+from common import _validate_arguments
 
 
 def _all_nonempty_combinations(array):
@@ -55,18 +56,6 @@ def strategy_optimizer_brute(rates, margin=0.05,
                              currency_1="CURR1", currency_2="CURR2",
                              opening_currency="CURR1", closing_currency="CURR2"):
 
-    if margin < 0:
-        raise ValueError("Negative margin")
-
-    if currency_1 == currency_2:
-        raise ValueError("Indistinguishable currencies")
-
-    if opening_currency not in [currency_1, currency_2]:
-        raise ValueError("Unknown currency")
-    if closing_currency not in [currency_1, currency_2]:
-        raise ValueError("Unknown currency")
-
-    if len(rates) == 0 and opening_currency != closing_currency:
-        raise ValueError("Insufficient conversion rates")
+    _validate_arguments(rates, margin, currency_1, currency_2, opening_currency, closing_currency)
 
     return strategy_optimizer_brute_aux(rates, margin, currency_1, currency_2)[opening_currency][closing_currency][0]
