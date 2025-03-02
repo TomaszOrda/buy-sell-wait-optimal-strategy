@@ -55,6 +55,9 @@ def strategy_optimizer_brute(rates, margin=0.05,
                              currency_1="CURR1", currency_2="CURR2",
                              opening_currency="CURR1", closing_currency="CURR2"):
 
+    if margin < 0:
+        raise ValueError("Negative margin")
+
     if currency_1 == currency_2:
         raise ValueError("Indistinguishable currencies")
 
