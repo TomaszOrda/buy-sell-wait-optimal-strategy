@@ -12,6 +12,9 @@ def strategy_optimizer_scanning(rates, margin=0.05,
     if closing_currency not in [currency_1, currency_2]:
         raise ValueError("Unknown currency")
 
+    if len(rates) == 0 and opening_currency != closing_currency:
+        raise ValueError("Insufficient conversion rates")
+
     optimal_strategy = []
 
     potential_buying_day = 0

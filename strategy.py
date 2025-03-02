@@ -10,6 +10,9 @@ def strategy_optimizer(rates, margin=0.05,
     if closing_currency not in [currency_1, currency_2]:
         raise ValueError("Unknown currency")
 
+    if len(rates) == 0 and opening_currency != closing_currency:
+        raise ValueError("Insufficient conversion rates")
+
     currencies = [currency_1, currency_2]
 
     def _dnc_buy_sell_wait(rates):

@@ -60,4 +60,7 @@ def strategy_optimizer_brute(rates, margin=0.05,
     if closing_currency not in [currency_1, currency_2]:
         raise ValueError("Unknown currency")
 
+    if len(rates) == 0 and opening_currency != closing_currency:
+        raise ValueError("Insufficient conversion rates")
+
     return strategy_optimizer_brute_aux(rates, margin, currency_1, currency_2)[opening_currency][closing_currency][0]
