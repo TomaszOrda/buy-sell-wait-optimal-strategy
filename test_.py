@@ -122,7 +122,7 @@ def test_open_with_second_currency():
 
 
 # rate < rates[potential_buying_day]:
-def test_postpone_potentian_buying_day():
+def test_add_additional_buying_day():
     _test_all_three(args=[[1.1, 0.9, 0.8, 0.7, 1.1, 0.9, 1.1, 0.9]], result=[3, 4, 5, 6, 7])
 
 
